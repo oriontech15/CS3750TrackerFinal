@@ -42,7 +42,7 @@
         </button>
         <div class="row">
             <div>
-                <input type="checkbox" id="observerCheckBox" name="observerCheckbox" value="true" onclick="observerCheck()" />
+                <input type="checkbox" id="observerCheckBox" name="observerCheckbox" value="true" onclick="storeCheckboxValue()" />
             </div>
             <div>
                 <h5>&nbsp;&nbsp; Proceed as an observer</h5>
@@ -51,3 +51,8 @@
     </div>
 
 </form>
+
+
+@section Scripts{
+    <script src="~/js/tracker.js"></script>
+}
