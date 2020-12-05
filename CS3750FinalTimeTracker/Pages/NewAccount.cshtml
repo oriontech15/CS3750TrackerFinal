@@ -1,14 +1,16 @@
 ﻿@page
-@model IndexModel
+@model CS3750FinalTimeTracker.Pages.NewAccountModel
 @{
-    ViewData["Title"] = "Home page";
 }
 
 <form method="post" class="text-center" asp-action="Tracker">
-
-    <h1 class="display-4">AUTHENTICATION</h1>
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
+
+
+            <div class="col-12 px-3 mt-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-dark">Create Account</h2>
+            </div>
 
             <div class="col-8 pt-3">
                 <div class="form-group row">
@@ -27,6 +29,24 @@
                         <input type="text" class="form-control" />
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Create New Group</label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Join existing group</label>
+                    </div>
+                    <div class="col-9">
+
+                    </div>
+                </div>
             </div>
 
             <button class="btn btn-lg btn-primary btn-block text-uppercase form-control center-screen">
@@ -34,20 +54,10 @@
             </button>
 
         </div>
-    </div>
 
-    <div class="row justify-content-between">
-        <button class="btn-primary form-control">
-            <a class="nav-link text-white text-center" asp-area="" asp-page="/NewAccount">Create a new account</a>
-        </button>
-        <div class="row">
-            <div>
-                <input type="checkbox" id="observerCheckBox" name="observerCheckbox" value="true" onclick="observerCheck()" />
-            </div>
-            <div>
-                <h5>&nbsp;&nbsp; Proceed as an observer</h5>
-            </div>
-        </div>
     </div>
-
 </form>
+
+@section Scripts{
+    <script src="~/js/tracker.js"></script>
+}
