@@ -7,7 +7,6 @@
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
 
-
             <div class="col-12 px-3 mt-3" style="border-bottom:1px solid #325d88">
                 <h2 class="text-dark">Create Account</h2>
             </div>
@@ -48,11 +47,26 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <button class="btn btn-lg btn-primary btn-block text-uppercase form-control center-screen">
-                <a class="nav-link text-white text-center" asp-area="" asp-page="/Tracker">Submit</a>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+
+        <div class="row justify-content-between">
+
+            <div class="row">
+                <div>
+                    <input type="checkbox" id="observerCheckBox" name="observerCheckbox" value="true" onclick="storeCheckboxValue()" />
+                </div>
+                <div>
+                    <h5 class="text-primary">&nbsp;&nbsp; Proceed as an observer</h5>
+                </div>
+            </div>
+
+            <button class="btn-primary btn-block text-uppercase form-control center-screen col-3">
+                <a class="nav-link text-white text-center p-1 pb-2" asp-area="" asp-page="/Tracker">Submit</a>
             </button>
-
         </div>
 
     </div>
