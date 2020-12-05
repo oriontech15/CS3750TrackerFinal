@@ -11,6 +11,7 @@ namespace CS3750FinalTimeTracker.Pages
     {
         public void OnGet()
         {
+
         }
     }
 }

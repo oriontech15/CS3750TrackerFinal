@@ -1,6 +1,7 @@
 ﻿@page
 @model CS3750FinalTimeTracker.Pages.TrackerModel
 @{
+    ViewData["Title"] = "Home page";
 }
 
 <html>
@@ -23,7 +24,7 @@
                         <div class="row">
                             <div class="col-md-12 p-5 shadow bg-white rounded">
                                 <div class="jumbotron">
-                                    <h1 class="display-2 text-center">
+                                    <h1 id="timer" class="display-2 text-center">
                                         00:00:00
                                     </h1>
                                 </div>
@@ -36,7 +37,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12 text-center">
-                                                <span class="badge badge-default text-center">00:00</span>
+                                                <span id="startTimeLabel" class="badge badge-default text-center">00:00</span>
                                             </div>
                                         </div>
                                     </div>
@@ -48,7 +49,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12 text-center">
-                                                <span class="badge badge-default text-center">00:00</span>
+                                                <span id="currentTimeLabel" class="badge badge-default text-center">00:00</span>
                                             </div>
                                         </div>
                                     </div>
@@ -60,14 +61,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12 text-center">
-                                                <span class="badge badge-default text-center">00:00</span>
+                                                <span id="endTimeLabel" class="badge badge-default text-center">00:00</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-lg btn-success btn-block" id="trackerButton">
-                                    Start Tracking
-                                </button>
+                                    <button id="trackerStartStopBtn" type="button" class="btn btn-lg btn-success btn-block">
+                                        Start Tracking
+                                    </button>
                             </div>
                         </div>
                     </div>
@@ -120,15 +121,38 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="recordTimeModal" tabindex="-1" role="dialog" aria-labelledby="recordTimeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Record New Time</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="timeValueLabel" class="col-form-label">Time:</label>
+            <input type="text" class="form-control" id="timeValueLabel">
+          </div>
+          <div class="form-group">
+            <label for="descriptionTextView" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="descriptionTextView"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button id="modalSave" type="button" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
-</html>
-
-@section Scripts{
-    <script src="~/js/tracker.js"></script>
-}
 
 <script>
-
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',
@@ -158,3 +182,5 @@
         }
     });
 </script>
+<script src="~/js/tracker.js"></script>
+</html>
