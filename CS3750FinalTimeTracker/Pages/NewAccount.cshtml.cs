@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CS3750FinalTimeTracker.Pages
 {
-    public class TrackerModel : PageModel
+    public class NewAccountModel : PageModel
     {
         public void OnGet()
         {
-
         }
     }
 }
