@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using CS3750FinalTimeTracker;
 
@@ -24,6 +25,16 @@ public class User
         this.endTime = endTime;
         this.totalTime = totalTime;
         this.description = description;
+    }
+
+    public string genSalt()
+    {
+        RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+        byte[] buffer = new byte[1024];
+
+        rng.GetBytes(buffer);
+        string salt = BitConverter.ToString(buffer);
+        return salt;
     }
 }
 
