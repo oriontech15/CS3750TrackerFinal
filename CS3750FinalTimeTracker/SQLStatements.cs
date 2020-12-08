@@ -24,11 +24,11 @@ public class SQLStatements
     }
 
     //returns list of group names logic check
-    public static string GetGroupName(String group)
+    public static string GetGroupName()
     {
         try
         {
-            string sSQL = "select distinct(group) from dbo.Final where group = '" + group + "'";
+            string sSQL = "select distinct(group) from dbo.Final";
             return sSQL;
         }
         catch (Exception ex)
@@ -113,5 +113,19 @@ public class SQLStatements
         }
     }
 
+    //returns group for a username 
+    public static string GetGroup(String userName)
+    {
+        try
+        {
+            string sSQL = "select distinct(group) from dbo.Final where userName = '" + userName + "'";
+            return sSQL;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
+                                MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
+        }
+    }
 }
 

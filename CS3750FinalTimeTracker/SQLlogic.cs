@@ -20,12 +20,12 @@ public class SQLlogic
         }
     }
 
-    public List<string> GetGroupNames(String group)
+    public List<string> GetGroupNames()
     {
         try
         {
             int returnedLines;
-            DataSet ds = DataAccess.ExecuteSQLStatement(SQLStatements.GetGroupName(group), out returnedLines);
+            DataSet ds = DataAccess.ExecuteSQLStatement(SQLStatements.GetGroupName(), out returnedLines);
 
             List<string> groups = new List<string>();
 
@@ -132,6 +132,19 @@ public class SQLlogic
         {
             string salt = DataAccess.ExecuteScalarSQL(SQLStatements.GetSalt(username));
             return salt;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+        }
+    }
+
+    public string getGroup(string username)
+    {
+        try
+        {
+            string group = DataAccess.ExecuteScalarSQL(SQLStatements.GetGroup(username));
+            return group;
         }
         catch (Exception ex)
         {
