@@ -2,7 +2,7 @@ $(document).ready(function () {
     checkObserver();
 });
 
-function observerCheck() {
+function storeCheckboxValue() {
 
     //Checking to see if the checkbox is checked or the value is "true"
     var isChecked = document.getElementById("observerCheckBox").checked;
@@ -29,7 +29,7 @@ function checkObserver() {
 function disableTracker() {
     console.log("DisablingTrackerPage");
     document.getElementById("trackerDiv").disabled = true;
-    document.getElementById("trackerButton").disabled = true;
+    document.getElementById("trackerStartStopBtn").disabled = true;
 }
 
 var timerCount;
