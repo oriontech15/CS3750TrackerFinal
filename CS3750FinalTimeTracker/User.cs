@@ -26,15 +26,5 @@ public class User
         this.totalTime = totalTime;
         this.description = description;
     }
-
-    public string genSalt()
-    {
-        RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-        byte[] buffer = new byte[1024];
-
-        rng.GetBytes(buffer);
-        string salt = BitConverter.ToString(buffer);
-        return salt;
-    }
 }
 
