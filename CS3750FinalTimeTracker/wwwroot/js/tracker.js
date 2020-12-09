@@ -28,8 +28,9 @@ function checkObserver() {
 //Disabled Tracker form if the user is an observer
 function disableTracker() {
     console.log("DisablingTrackerPage");
-    document.getElementById("trackerDiv").disabled = true;
+    //document.getElementById("trackerDiv").disabled = true;
     document.getElementById("trackerStartStopBtn").disabled = true;
+    document.getElementById("timeTrackerDiv").style.display = "none";
 }
 
 var timerCount;

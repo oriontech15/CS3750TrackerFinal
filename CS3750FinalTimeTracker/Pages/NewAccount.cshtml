@@ -1,7 +1,6 @@
 ﻿@page
 @model CS3750FinalTimeTracker.Pages.NewAccountModel
 
-
 <form method="post" asp-action="Tracker" class="text-center" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
@@ -36,61 +35,40 @@
                         <input class="form-control" id="userPassword" />
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <div class="col-3">
-                        <label asp-for="UserObj.User.GroupId"></label>
-                    </div>
-                    <div class="col-9">
-                        @Html.DropDownListFor(m => m.UserObj.User.GroupId,
-                                     Model.UserObj.GroupList,
-                                     "- Please select a group - ",
-                                     new { @class = "form-control" })
-                        <span class="text-danger" asp-validation-for="UserObj.User.GroupId"></span>
-                    </div>
-                </div>
-
-                <p onclick="prepForSubmission()" class="rounded bg-info">
-                    I agree to terms
-                </p>
-
-                <!--<-->@*div class="col-6">
-                    <button class="btn btn-primary form-control" onclick="prepForSubmission()">Create Account</button>
-                </div>*@
-
-                <div id="hiddenHash" visible="false">
-                    <input class="form-control" asp-for="UserObj.User.hash" />
-                </div>
-
-                <div id="hiddenSalt" visible="false">
-                    <input class="form-control" asp-for="UserObj.User.salt" />
-                </div>
-
             </div>
         </div>
+
+        <div class="row px-2 mx-2 backgroundWhite border justify-content-between">
+            <h5 class="m-2 p-2">Choose A Group</h5>
+
+            <div class="m-2 p-2" id="selectUserGroup">
+                @Html.DropDownListFor(m => m.UserObj.User.GroupId,
+                             Model.UserObj.GroupList,
+                             "- Please select a group - ",
+                             new { @class = "form-control" })
+                <span class="text-danger" asp-validation-for="UserObj.User.GroupId"></span>
+            </div>
+
+            <div class="m-2 p-2">
+                <a asp-page="CreateGroup" class="btn btn-primary">Create A New Group</a>
+            </div>
+        </div>
+
+        <asp:HiddenField id="hdnHash" runat="server" value="" asp-for="UserObj.User.hash"></asp:HiddenField>
+        <input id="hiddenhash" type="hidden" runat="server" />
 
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>&nbsp;</div>
 
         <div class="row justify-content-between">
-
-            <div class="row">
-                <div>
-                    <input type="checkbox" id="observerCheckBox" name="observerCheckbox" value="true" onclick="storeCheckboxValue()" />
-                </div>
-                <div>
-                    <h5 class="text-primary">&nbsp;&nbsp; Proceed as an observer</h5>
-                </div>
+            <div>
+                <a asp-page="Observer" class="btn btn-primary">Proceed As An Observer</a>
             </div>
-
-          
-
-            <div class="col-6">
-                <button type="submit" class="btn btn-primary form-control">Submit</button>
+            <div>
+                <button type="submit" class="btn btn-primary form-control" onclick="prepForSubmission()">&nbsp;&nbsp;Submit&nbsp;&nbsp;</button>
             </div>
         </div>
-
     </div>
 </form>
 
@@ -102,37 +80,35 @@
 
         function prepForSubmission() {
 
-         
+            var password = document.getElementById('userPassword').value;
+            hashPassword('@Model.UserObj.User.salt', password);
             saveUsername();
-            hashPassword();
+            saveGroupChoice();
+        }
 
+        function hashPassword(salt, password) {
+
+            var toHash = password + salt;
+
+            var hash = sha256(toHash);
+
+            document.getElementById("hiddenHash").value = hash;
+            document.getElementById('<%=hdnHash.ClientID%>').value = hash;
+            $('#hiddenHash').val(hash);
+        }
+
+        function saveGroupChoice() {
+
+            var userGroup = @Model.UserObj.User.GroupId;
+            console.log(userGroup)
+            document.cookie = userGroup;
         }
 
         function saveUsername() {
             var name = document.getElementById("inputUsername").value;
+            console.log(name)
             document.cookie = name;
         }
 
-        function hashPassword() {
-
-            var password = document.getElementById("userPassword").value;
-
-            var result = '';
-            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            var charactersLength = characters.length;
-            for (var i = 0; i < 8; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-
-            document.getElementById("hiddenHash").value = result;
-
-            var toHash = password + result;
-
-            var hash = sha256(toHash);
-
-            document.getElementById("hiddenSalt").value = hash;
-        }
-
     </script>
-
 }

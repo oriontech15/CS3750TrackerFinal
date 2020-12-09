@@ -19,7 +19,7 @@
     </head>
     <div class="container-fluid">
         <div class="row p-3">
-            <div class="col-md-6">
+            <div class="col-md-6" id="">
                 <div class="row">
                     <div class="col-md-12 pl-4 pr-4 pb-4">
                         <div class="row">
@@ -107,14 +107,15 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        @*@foreach (var item in Model.UserList.Where(c => c.GroupId == groupId)*@
                         @foreach (var item in Model.UserList)
                         {
                             <tr>
-                                <td>@DateTime.Now.ToString()</td>
-                                <td>@item.totalTime</td>
                                 <td>@item.userName</td>
+                                <td>@item.startTime</td>
+                                <td>@item.endTime</td>
                                 <td>@item.description</td>
+                                <td>@item.totalTime</td>
 
                             </tr>
                         }

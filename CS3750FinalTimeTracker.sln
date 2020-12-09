@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS3750FinalTimeTracker", "CS3750FinalTimeTracker\CS3750FinalTimeTracker.csproj", "{3BE49B73-8592-428C-810F-A42034C3DD49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS3750FinalTimeTracker", "CS3750FinalTimeTracker\CS3750FinalTimeTracker.csproj", "{3BE49B73-8592-428C-810F-A42034C3DD49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

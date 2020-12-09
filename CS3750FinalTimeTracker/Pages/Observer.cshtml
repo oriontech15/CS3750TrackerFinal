@@ -1,0 +1,56 @@
+﻿@page
+@model CS3750FinalTimeTracker.Pages.ObserverModel
+@{
+}
+
+<form method="post" asp-action="Tracker" class="text-center" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border justify-content-between">
+            <h5 class="m-2 p-2">Choose A Group To Observe</h5>
+
+            <div class="m-2 p-2" id="SelectGroupDropDown">
+                @Html.DropDownList("SelectObserverGroup",
+                             Model.UserObj.GroupList,
+                             "- Please select a group - ",
+                             new { @class = "form-control" })
+            </div>
+
+            <div class="row m-2 p-2">
+                <div>
+                    <input type="checkbox" id="observerCheckBox" name="observerCheckbox" value="true" onclick="storeCheckboxValue()" />
+                </div>
+                <div>&nbsp;</div>
+                <div>
+                    <h5 class="text-primary">I agree to procced as an observer</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary form-control">Continue</button>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    <script src="~/js/tracker.js"></script>
+    <script src="~/js/hash.js"></script>
+
+    <script>
+
+        $("#SelectObserverGroup").on("change", function () {
+            var groupId = $("#SelectObserverGroup").val();
+
+            console.log("val = " + groupId);
+            document.cookie = groupId;
+        });
+
+        function saveGroupChoice() {
+            var group = document.getElementById("SelectGroupDropDown").value;
+            console.log(group);
+            document.cookie = group;
+        }
+
+    </script>
+}

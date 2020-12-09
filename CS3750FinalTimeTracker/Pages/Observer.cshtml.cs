@@ -1,27 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Reflection;
-using Microsoft.AspNetCore.Hosting;
-using System.Security.Cryptography;
 
 namespace CS3750FinalTimeTracker.Pages
 {
-    public class NewAccountModel : PageModel
+    public class ObserverModel : PageModel
     {
-
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostingEnvironment;
-       
 
-        public NewAccountModel(IUnitOfWork unitOfwork, IWebHostEnvironment hostingEnvironment)
+
+        public ObserverModel(IUnitOfWork unitOfwork, IWebHostEnvironment hostingEnvironment)
         {
             _unitOfWork = unitOfwork;
             _hostingEnvironment = hostingEnvironment;
@@ -52,32 +45,17 @@ namespace CS3750FinalTimeTracker.Pages
 
         }
 
-        public string createSalt()
-        {
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            byte[] buffer = new byte[1024];
-
-            rng.GetBytes(buffer);
-            string salt = BitConverter.ToString(buffer);
-            return salt;
-        }
 
         public IActionResult OnPost()
         {
-            //string webRootPath = _hostingEnvironment.WebRootPath;
-            //var files = HttpContext.Request.Form.Files;
+           
+
+
+
          
-
-            UserObj.User.salt = createSalt();
-
-               
-
-            _unitOfWork.User.Add(UserObj.User);
-            _unitOfWork.Save();
-
             return RedirectToPage("./Tracker");
 
-           
+
 
         }
     }
