@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     checkObserver();
 });
 
@@ -113,6 +113,11 @@ function runClock() {
 
 function stopClock() {
     clearInterval(clockId);
+}
+
+function createTableRow() {
+    var table = document.getElementById("trackedTimeTable");
+    var row = table.insertRow();
 }
 
 function saveToDatabase() {

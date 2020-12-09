@@ -1,5 +1,5 @@
 ﻿@page
-@model CS3750FinalTimeTracker.Pages.TrackerModel
+@model IEnumerable<CS3750FinalTimeTracker.DisplayUser>
 @{
     ViewData["Title"] = "Home page";
 }
@@ -88,14 +88,18 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered table-striped rounded">
+                <asp:Literal id="TrackedTimeTable" class="table table-bordered table-striped rounded" runat="server"></asp:Literal>
+                <table id="trackedTimeTable" class="table table-bordered table-striped rounded">
                     <thead class="text-light bg-dark">
                         <tr>
                             <th class="">
-                                Date
+                                Start Time
+                            </th>
+                            <th class="">
+                                End Time
                             </th>
                             <th>
-                                Time Tracked
+                                Total Time
                             </th>
                             <th>
                                 Username
@@ -106,21 +110,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach(var item in Model) {
                         <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
+                            <td>@item.startTime</td>
+                            <td>@item.endTime</td>
+                            <td>@item.totalTime</td>
+                            <td>@item.userName</td>
+                            <td>@item.description</td>
                         </tr>
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="recordTimeModal" tabindex="-1" role="dialog" aria-labelledby="recordTimeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
