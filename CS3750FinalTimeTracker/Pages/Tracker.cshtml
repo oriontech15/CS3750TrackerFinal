@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <table id="DT_loadTable" class="table table-bordered">
+        @*<table id="DT_loadTable" class="table table-bordered">
             <thead>
                 <tr>
                     <th>
@@ -112,10 +112,10 @@
                     </th>
                 </tr>
             </thead>
-        </table>
+        </table>*@
 
 
-        @*<div class="row">
+        <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered table-striped rounded">
                         <thead class="text-light bg-dark">
@@ -135,20 +135,21 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            @foreach (var item in Model.UserList)
+                            {
                             <tr>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
+                                <td>@DateTime.Now.ToString()</td>
+                                <td>@item.totalTime</td>
+                                <td>@item.userName</td>
+                                <td>@item.description</td>
+                              
                             </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
-            </div>*@
+            </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="recordTimeModal" tabindex="-1" role="dialog" aria-labelledby="recordTimeModalLabel" aria-hidden="true">

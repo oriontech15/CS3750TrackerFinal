@@ -48,7 +48,6 @@ namespace CS3750FinalTimeTracker.Pages
 
             return Page(); // refresh page call on Get again without id
 
-
         }
 
         public IActionResult OnPost()
@@ -56,36 +55,11 @@ namespace CS3750FinalTimeTracker.Pages
             string webRootPath = _hostingEnvironment.WebRootPath;
             var files = HttpContext.Request.Form.Files;
 
-
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
-
-            //if (MenuItemObj.MenuItem.Id == 0) // means a brand new category
-            //{
-
-                //////Physically upload and save image
-
-                ////string fileName = Guid.NewGuid().ToString();
-                ////var uploads = Path.Combine(webRootPath, @"images\menuitems");
-                ////var extension = Path.GetExtension(files[0].FileName);
-
-                ////using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
-                ////{
-                ////    files[0].CopyTo(fileStream);
-                ////}
-
-                //////save the string data path
-                ////MenuItemObj.MenuItem.Image = @"\images\menuitems\" + fileName + extension;
-
-                _unitOfWork.User.Add(UserObj.User);
-            //}
-
+            _unitOfWork.User.Add(UserObj.User);
             _unitOfWork.Save();
+
             return RedirectToPage("./Tracker");
 
         }
-
     }
 }
