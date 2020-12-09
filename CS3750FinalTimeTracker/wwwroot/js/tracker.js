@@ -37,6 +37,9 @@ var isTimerGoing = false;
 var btn = document.getElementById("trackerStartStopBtn");
 var timeValue = "";
 
+var startTime;
+var endTime;
+
 function switchButtonState() {
 
     if (!isTimerGoing) {
@@ -45,7 +48,8 @@ function switchButtonState() {
         btn.removeAttribute("data-target");
 
         btn.innerHTML = "Stop Tracking";
-        document.getElementById("startTimeLabel").innerHTML = getCurrentTime();
+        startTime = getCurrentTime();
+        document.getElementById("startTimeLabel").innerHTML = startTime;
         startClock();
         isTimerGoing = true;
     } else {
@@ -53,12 +57,15 @@ function switchButtonState() {
         btn.setAttribute("data-toggle", "modal");
         btn.setAttribute("data-target", "#recordTimeModal");
 
-        document.getElementById("timeValueLabel").value = timeValue;
-        document.getElementById("modalSave").onclick = function() {
+        endTime = getCurrentTime();
+        document.getElementById("endTimeLabel").innerHTML = endTime;
+        document.getElementById("timeValueLabel").value = timerCount;
+        document.getElementById("startTimeValueLabel").value = startTime;
+        document.getElementById("endTimeValueLabel").value = endTime;
+        document.getElementById("modalSave").onclick = function () {
             saveToDatabase();
         };
         btn.innerHTML = "Start Tracking";
-        document.getElementById("endTimeLabel").innerHTML = getCurrentTime();
         stopClock();
         isTimerGoing = false;
     }

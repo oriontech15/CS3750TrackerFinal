@@ -2,7 +2,7 @@
 @model CS3750FinalTimeTracker.Pages.NewAccountModel
 
 
-<form method="post" class="text-center" asp-action="Tracker" enctype="multipart/form-data">
+<form method="post" asp-action="Tracker" class="text-center" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border">
 
@@ -19,7 +19,7 @@
                         <label asp-for="UserObj.User.userName"></label>
                     </div>
                     <div class="col-9">
-                        <input class="form-control" asp-for="UserObj.User.userName" />
+                        <input id="inputUsername" class="form-control" asp-for="UserObj.User.userName" />
                         <span class="text-danger" asp-validation-for="UserObj.User.userName"></span>
                     </div>
                 </div>
@@ -30,23 +30,12 @@
 
                 <div class="form-group row">
                     <div class="col-3">
-                        <label asp-for="UserObj.User.password"></label>
+                        <label> Password</label>
                     </div>
                     <div class="col-9">
-                        <input class="form-control" asp-for="UserObj.User.password" />
-                        <span class="text-danger" asp-validation-for="UserObj.User.password"></span>
+                        <input class="form-control" id="userPassword" />
                     </div>
                 </div>
-
-                @*<div class="form-group row">
-                    <div class="col-3">
-                        <label asp-for="UserObj.User.Group"></label>
-                    </div>
-                    <div class="col-9">
-                        <input class="form-control" asp-for="UserObj.User.Group" />
-                        <span class="text-danger" asp-validation-for="UserObj.User.Group"></span>
-                    </div>
-                </div>*@
 
                 <div class="form-group row">
                     <div class="col-3">
@@ -60,6 +49,23 @@
                         <span class="text-danger" asp-validation-for="UserObj.User.GroupId"></span>
                     </div>
                 </div>
+
+                <p onclick="prepForSubmission()" class="rounded bg-info">
+                    I agree to terms
+                </p>
+
+                <!--<-->@*div class="col-6">
+                    <button class="btn btn-primary form-control" onclick="prepForSubmission()">Create Account</button>
+                </div>*@
+
+                <div id="hiddenHash" visible="false">
+                    <input class="form-control" asp-for="UserObj.User.hash" />
+                </div>
+
+                <div id="hiddenSalt" visible="false">
+                    <input class="form-control" asp-for="UserObj.User.salt" />
+                </div>
+
             </div>
         </div>
 
@@ -78,9 +84,7 @@
                 </div>
             </div>
 
-            @*<button class="btn-primary btn-block text-uppercase form-control center-screen col-3">
-                <a class="nav-link text-white text-center p-1 pb-2" onclick="return validateInput()" asp-area="" asp-page="/Tracker">Submit</a>
-            </button>*@
+          
 
             <div class="col-6">
                 <button type="submit" class="btn btn-primary form-control">Submit</button>
@@ -92,31 +96,41 @@
 
 @section Scripts{
     <script src="~/js/tracker.js"></script>
+    <script src="~/js/hash.js"></script>
 
     <script>
 
-        function validateInput() {
+        function prepForSubmission() {
 
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            var group = document.getElementById("group").value;
+         
+            saveUsername();
+            hashPassword();
 
-            if (username.toString() == '') {
-                swal("Error", "Please enter a User Name", "error");
-                return false;
+        }
+
+        function saveUsername() {
+            var name = document.getElementById("inputUsername").value;
+            document.cookie = name;
+        }
+
+        function hashPassword() {
+
+            var password = document.getElementById("userPassword").value;
+
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < 8; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
 
-            if (password.toString() == '') {
-                swal("Error", "Please enter an Password", "error");
-                return false;
-            }
+            document.getElementById("hiddenHash").value = result;
 
-            if (group.toString() == '') {
-                swal("Error", "Please enter a new group name", "error");
-                return false;
-            }
+            var toHash = password + result;
 
-            return true;
+            var hash = sha256(toHash);
+
+            document.getElementById("hiddenSalt").value = hash;
         }
 
     </script>

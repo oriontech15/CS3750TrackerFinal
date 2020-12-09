@@ -55,10 +55,14 @@ namespace CS3750FinalTimeTracker.Pages
             string webRootPath = _hostingEnvironment.WebRootPath;
             var files = HttpContext.Request.Form.Files;
 
+
+
             _unitOfWork.User.Add(UserObj.User);
             _unitOfWork.Save();
 
             return RedirectToPage("./Tracker");
+
+           
 
         }
     }

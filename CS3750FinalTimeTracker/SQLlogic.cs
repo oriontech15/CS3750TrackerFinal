@@ -7,10 +7,10 @@ using CS3750FinalTimeTracker;
 
 
 
-public class SQLlogic
+public static class SQLlogic
 {
 
-    public void InsertIntoFinal(String userName, String salt, String hash, String group, String startTime, String endTime, int totalTime, String description)
+    public static void InsertIntoFinal(String userName, String salt, String hash, String group, String startTime, String endTime, int totalTime, String description)
     {
         try
         {
@@ -22,7 +22,7 @@ public class SQLlogic
         }
     }
 
-    public List<string> GetGroupNames()
+    public static List<string> GetGroupNames()
     {
         try
         {
@@ -45,7 +45,7 @@ public class SQLlogic
         }
     }
 
-    public int getTotalTime(string username)
+    public static int getTotalTime(string username)
     {
         try
         {
@@ -66,7 +66,7 @@ public class SQLlogic
         }
     }
 
-    public List<string> GetUsersOfGroup(String group)
+    public static List<string> GetUsersOfGroup(String group)
     {
         try
         {
@@ -92,7 +92,7 @@ public class SQLlogic
     /// <summary>
     /// returns display info of a given group
     /// </summary>
-    public List<DisplayUser> GetAllInfo(String group)
+    public static List<DisplayUser> GetAllInfo(String group)
     {
         try
         {
@@ -115,7 +115,7 @@ public class SQLlogic
         }
     }
 
-    public string getHash(string username)
+    public static string getHash(string username)
     {
         try
         {
@@ -128,7 +128,7 @@ public class SQLlogic
         }
     }
 
-    public string getSalt(string username)
+    public static string getSalt(string username)
     {
         try
         {
@@ -141,12 +141,13 @@ public class SQLlogic
         }
     }
 
-    public string getGroup(string username)
+    public static int getGroup(string username)
     {
         try
         {
             string group = DataAccess.ExecuteScalarSQL(SQLStatements.GetGroup(username));
-            return group;
+            int m = Int32.Parse(group);
+            return m;
         }
         catch (Exception ex)
         {

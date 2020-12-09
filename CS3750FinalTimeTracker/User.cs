@@ -19,15 +19,10 @@ public class User
     public string hash { get; set; }
 
     [Required]
-    [Display(Name = "Password")]
-    public string password { get; set; }
-
-    [Required]
     [Display(Name = "Group Name")]
 
     public int GroupId { get; set; }
 
-    //public string group;
     public string startTime { get; set; }
 
     public string endTime { get; set; }
@@ -38,16 +33,5 @@ public class User
 
     [ForeignKey("GroupId")]
     public virtual Group Group { get; set; }
-
-    //public User(string userName, string salt, string hash, string startTime, string endTime, int totalTime, string description)
-    //{
-    //    this.userName = userName;
-    //    this.salt = salt;
-    //    this.hash = hash;
-    //    this.startTime = startTime;
-    //    this.endTime = endTime;
-    //    this.totalTime = totalTime;
-    //    this.description = description;
-    //}
 }
 

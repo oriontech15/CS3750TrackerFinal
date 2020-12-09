@@ -12,7 +12,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "Insert into dbo.Final(userName, salt, hash, group, startTime, endTime, totalTime, description) " +
+            string sSQL = "Insert into dbo.User(userName, salt, hash, group, startTime, endTime, totalTime, description) " +
                 "Values('" + userName + "', '" + salt + "', '" + hash + "', '" + group + "', '" + startTime + "', '" + endTime + "', " + totalTime + ", '" + description + "')";
             return sSQL;
         }
@@ -28,7 +28,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(group) from dbo.Final";
+            string sSQL = "select distinct(group) from dbo.User";
             return sSQL;
         }
         catch (Exception ex)
@@ -43,7 +43,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select SUM(totalTime) from dbo.Final group by '" + userName + "' where userName = '" + userName + "'";
+            string sSQL = "select SUM(totalTime) from dbo.User group by '" + userName + "' where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -58,7 +58,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(userName) from dbo.Final where group = '" + group + "'";
+            string sSQL = "select distinct(userName) from dbo.User where group = '" + group + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -73,7 +73,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select userName, startTime, endTime, totalTime, description from dbo.Final where group = '" + group + "'";
+            string sSQL = "select userName, startTime, endTime, totalTime, description from dbo.User where group = '" + group + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -88,7 +88,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(hash) from dbo.Final where userName = '" + userName + "'";
+            string sSQL = "select distinct(hash) from dbo.User where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -103,7 +103,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(salt) from dbo.Final where userName = '" + userName + "'";
+            string sSQL = "select distinct(salt) from dbo.User where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -118,7 +118,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(group) from dbo.Final where userName = '" + userName + "'";
+            string sSQL = "select distinct(group) from dbo.User where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)
