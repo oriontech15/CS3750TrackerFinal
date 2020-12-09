@@ -7,7 +7,7 @@ using CS3750FinalTimeTracker;
 /// <summary>
 /// Class used to access the database.
 /// </summary>
-public static class DataAccess
+public class DataAccess
 {
     /// <summary>
     /// Connection string to the database.

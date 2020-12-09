@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CS3750FinalTimeTracker;
-namespace CS3750FinalTimeTracker
+
+
+public class DisplayUser
 {
     public class DisplayUser
 {

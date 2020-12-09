@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Collections;
 
-public class SQLlogic : Controller
+
+
+
+public class SQLlogic
 {
     public ViewResult Tracker() {
         DisplayUser user1 = new DisplayUser{userName="orion", startTime="00:00:01", endTime="00:00:02", totalTime=1, description="TESTING"};
@@ -22,17 +25,12 @@ public class SQLlogic : Controller
         return View(list);
     }
 
-    // public void InsertIntoFinal(String userName, String salt, String hash, String group, String startTime, String endTime, int totalTime, String description)
-    // {
-    //     try
-    //     {
-    //         DataAccess.ExecuteNonQuery(SQLStatements.InsertLine(userName, salt, hash, group, startTime, endTime, totalTime, description));
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
-    //     }
-    // }
+    public List<string> GetGroupNames()
+    {
+        try
+        {
+            int returnedLines;
+            DataSet ds = DataAccess.ExecuteSQLStatement(SQLStatements.GetGroupName(), out returnedLines);
 
     // public List<string> GetGroupNames(String group)
     // {
@@ -127,30 +125,30 @@ public class SQLlogic : Controller
     //     }
     // }
 
-    // public string getHash(string username)
-    // {
-    //     try
-    //     {
-    //         string hash = DataAccess.ExecuteScalarSQL(SQLStatements.GetHash(username));
-    //         return hash;
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
-    //     }
-    // }
+    public string getSalt(string username)
+    {
+        try
+        {
+            string salt = DataAccess.ExecuteScalarSQL(SQLStatements.GetSalt(username));
+            return salt;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+        }
+    }
 
-    // public string getSalt(string username)
-    // {
-    //     try
-    //     {
-    //         string salt = DataAccess.ExecuteScalarSQL(SQLStatements.GetSalt(username));
-    //         return salt;
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
-    //     }
-    // }
+    public string getGroup(string username)
+    {
+        try
+        {
+            string group = DataAccess.ExecuteScalarSQL(SQLStatements.GetGroup(username));
+            return group;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+        }
+    }
 }
 

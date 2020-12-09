@@ -15,8 +15,10 @@
                 border-radius: 7px;
             }
         </style>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" />
     </head>
-    <div class="container-fluid" id="trackerDiv">
+    <div class="container-fluid">
         <div class="row p-3">
             <div class="col-md-6">
                 <div class="row">
@@ -86,43 +88,68 @@
                 </div>
             </div>
         </div>
+
+        @*<table id="DT_loadTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        Start Time
+                    </th>
+                    <th>
+                        End Time
+                    </th>
+                    <th>
+                        Total Time
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Group Name
+                    </th>
+                </tr>
+            </thead>
+        </table>*@
+
+
         <div class="row">
-            <div class="col-md-12">
-                <asp:Literal id="TrackedTimeTable" class="table table-bordered table-striped rounded" runat="server"></asp:Literal>
-                <table id="trackedTimeTable" class="table table-bordered table-striped rounded">
-                    <thead class="text-light bg-dark">
-                        <tr>
-                            <th class="">
-                                Start Time
-                            </th>
-                            <th class="">
-                                End Time
-                            </th>
-                            <th>
-                                Total Time
-                            </th>
-                            <th>
-                                Username
-                            </th>
-                            <th>
-                                Description
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach(var item in Model) {
-                        <tr>
-                            <td>@item.startTime</td>
-                            <td>@item.endTime</td>
-                            <td>@item.totalTime</td>
-                            <td>@item.userName</td>
-                            <td>@item.description</td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                <div class="col-md-12">
+                    <table class="table table-bordered table-striped rounded">
+                        <thead class="text-light bg-dark">
+                            <tr>
+                                <th class="">
+                                    Date
+                                </th>
+                                <th>
+                                    Time Tracked
+                                </th>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.UserList)
+                            {
+                            <tr>
+                                <td>@DateTime.Now.ToString()</td>
+                                <td>@item.totalTime</td>
+                                <td>@item.userName</td>
+                                <td>@item.description</td>
+                              
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
     </div>
 
     <!-- Modal -->
@@ -158,7 +185,11 @@
 </html>
 
 @section Scripts{
+    <script src="~/js/user.js"></script>
     <script src="~/js/tracker.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 }
 
 <script>
@@ -193,7 +224,7 @@
 
     $(document).ready(function () {
         document.getElementById("trackerDiv").disabled = false;
-        document.getElementById("trackerStartStopBtn").disabled = false; 
+        document.getElementById("trackerStartStopBtn").disabled = false;
     });
 
 </script>

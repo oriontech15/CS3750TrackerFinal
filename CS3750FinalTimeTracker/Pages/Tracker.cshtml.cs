@@ -15,12 +15,21 @@ namespace CS3750FinalTimeTracker.Pages
 {
     public class TrackerModel : PageModel
     {
+
+        private readonly IUnitOfWork _unitOfWork;
+
+        public TrackerModel(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<User> UserList { get; set; }
+
+
+
         public void OnGet()
         {
-            // SQLlogic logicController = new SQLlogic();
-            // List<DisplayUser> infoList = logicController.GetAllInfo("group1");
-
-            // createTable(infoList);
+            UserList = _unitOfWork.User.GetAll(null, null, "Group");
         }
 
     //     public void createTable(List<DisplayUser> infoList) {
