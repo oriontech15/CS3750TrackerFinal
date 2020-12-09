@@ -92,6 +92,8 @@
 
             var hash = sha256(toHash);
 
+            //saveHash(hash);
+
             document.getElementById("hiddenHash").value = hash;
             document.getElementById('<%=hdnHash.ClientID%>').value = hash;
             $('#hiddenHash').val(hash);
@@ -109,6 +111,12 @@
             console.log(name)
             document.cookie = name;
         }
+
+        //function saveHash(hash) {
+        //    var hashedPassword = hash;
+        //    console.log(hashedPassword)
+        //    document.cookie = hashedPassword;
+        //}
 
     </script>
 }

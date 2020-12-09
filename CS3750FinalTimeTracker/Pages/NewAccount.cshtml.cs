@@ -67,17 +67,16 @@ namespace CS3750FinalTimeTracker.Pages
             //string webRootPath = _hostingEnvironment.WebRootPath;
             //var files = HttpContext.Request.Form.Files;
          
-
             UserObj.User.salt = createSalt();
 
-               
+            //UserObj.User.hash = Request.Cookies["hashedPassword"];
+            //UserObj.User.hash = Request.Form["hdnHash"].ToString();
+            //UserObj.User.hash = hdnHash.Value; 
 
             _unitOfWork.User.Add(UserObj.User);
             _unitOfWork.Save();
 
             return RedirectToPage("./Tracker");
-
-           
 
         }
     }

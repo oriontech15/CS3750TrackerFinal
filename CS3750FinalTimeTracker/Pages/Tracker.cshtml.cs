@@ -38,6 +38,8 @@ namespace CS3750FinalTimeTracker.Pages
 
             UserObj.userName = Request.Cookies["name"];
             UserObj.salt = SQLlogic.getSalt(UserObj.userName);
+            UserObj.hash = "testHash";
+            UserObj.GroupId = 5;
             //UserObj.hash = SQLlogic.getHash(UserObj.userName);
             //UserObj.GroupId = SQLlogic.getGroup(UserObj.userName);
 

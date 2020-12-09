@@ -108,6 +108,7 @@
                     </thead>
                     <tbody>
                         @*@foreach (var item in Model.UserList.Where(c => c.GroupId == groupId)*@
+                        @* @if(item.startTime != Null {} *@
                         @foreach (var item in Model.UserList)
                         {
                             <tr>
