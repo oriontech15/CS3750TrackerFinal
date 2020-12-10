@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Http;
 
 namespace CS3750FinalTimeTracker.Pages
 {
@@ -62,6 +63,9 @@ namespace CS3750FinalTimeTracker.Pages
             return salt;
         }
 
+       
+
+
         public IActionResult OnPost()
         {
             //string webRootPath = _hostingEnvironment.WebRootPath;
@@ -73,10 +77,13 @@ namespace CS3750FinalTimeTracker.Pages
             //UserObj.User.hash = Request.Form["hdnHash"].ToString();
             //UserObj.User.hash = hdnHash.Value; 
 
+            HttpContext.Session.SetString("username", UserObj.User.userName);
+            HttpContext.Session.SetString("salt", UserObj.User.salt);
+
             _unitOfWork.User.Add(UserObj.User);
             _unitOfWork.Save();
 
-            return RedirectToPage("./Tracker");
+            return RedirectToPage("./Password");
 
         }
     }

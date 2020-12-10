@@ -26,11 +26,15 @@ namespace CS3750FinalTimeTracker
         {
             services.AddRazorPages();
 
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            services.AddSession();
 
 
         }
@@ -61,7 +65,7 @@ namespace CS3750FinalTimeTracker
             //    endpoints.MapRazorPages();
             //});
 
-
+            app.UseSession();
             app.UseMvc();
         }
     }
