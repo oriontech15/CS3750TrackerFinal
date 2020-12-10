@@ -79,12 +79,12 @@ namespace CS3750FinalTimeTracker.Pages
 
             HttpContext.Session.SetString("username", UserObj.User.userName);
             HttpContext.Session.SetString("salt", UserObj.User.salt);
+            HttpContext.Session.SetInt32("groupId", UserObj.User.GroupId);
 
             _unitOfWork.User.Add(UserObj.User);
             _unitOfWork.Save();
 
             return RedirectToPage("./Password");
-
         }
     }
 }

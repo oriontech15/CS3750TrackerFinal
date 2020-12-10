@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhite border justify-content-between">
             <h5 class="m-2 p-2">Choose A Group To Observe</h5>
-
-            <div class="m-2 p-2" id="SelectGroupDropDown">
-                @Html.DropDownList("SelectObserverGroup",
+            <div class="m-2 p-2" id="selectUserGroup">
+                @Html.DropDownListFor(m => m.UserObj.User.GroupId,
                              Model.UserObj.GroupList,
                              "- Please select a group - ",
                              new { @class = "form-control" })
+                <span class="text-danger" asp-validation-for="UserObj.User.GroupId"></span>
             </div>
 
             <div class="row m-2 p-2">

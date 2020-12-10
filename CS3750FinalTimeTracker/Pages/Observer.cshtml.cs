@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Http;
 
 namespace CS3750FinalTimeTracker.Pages
 {
@@ -48,15 +49,10 @@ namespace CS3750FinalTimeTracker.Pages
 
         public IActionResult OnPost()
         {
-           
 
+            HttpContext.Session.SetInt32("groupId", UserObj.User.GroupId);
 
-
-         
             return RedirectToPage("./Tracker");
-
-
-
         }
     }
 }

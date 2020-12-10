@@ -118,7 +118,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(group) from dbo.User where userName = '" + userName + "'";
+            string sSQL = "select distinct(groupId) from dbo.User where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)

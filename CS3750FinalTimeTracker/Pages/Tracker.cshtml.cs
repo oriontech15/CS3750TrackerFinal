@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Http;
 
 namespace CS3750FinalTimeTracker.Pages
 {
@@ -36,13 +37,11 @@ namespace CS3750FinalTimeTracker.Pages
             string webRootPath = _hostingEnvironment.WebRootPath;
             var files = HttpContext.Request.Form.Files;
 
-            UserObj.userName = Request.Cookies["name"];
-            UserObj.salt = SQLlogic.getSalt(UserObj.userName);
-            UserObj.hash = "testHash";
-            UserObj.GroupId = 5;
-            //UserObj.hash = SQLlogic.getHash(UserObj.userName);
-            //UserObj.GroupId = SQLlogic.getGroup(UserObj.userName);
-
+            UserObj.userName = HttpContext.Session.GetString("username");
+            UserObj.salt = HttpContext.Session.GetString("salt");
+            UserObj.hash = HttpContext.Session.GetString("hash");
+            UserObj.GroupId = (int)HttpContext.Session.GetInt32("groupId");
+           
 
             _unitOfWork.User.Add(UserObj);
             _unitOfWork.Save();
@@ -50,6 +49,5 @@ namespace CS3750FinalTimeTracker.Pages
             return RedirectToPage("./Tracker");
 
         }
-
     }
 }

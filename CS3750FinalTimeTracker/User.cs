@@ -18,7 +18,7 @@ public class User
 
     public string hash { get; set; }
 
-    [Required]
+    
     [Display(Name = "Group Name")]
 
     public int GroupId { get; set; }
