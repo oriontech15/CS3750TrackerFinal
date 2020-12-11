@@ -1,5 +1,6 @@
 ﻿@page
 @model IndexModel
+@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Home page";
 }
@@ -33,6 +34,12 @@
         </div>
     </div>
 
+    @if (@HttpContext.Session.GetString("invalid") == "invalid")
+    {
+        <div class="text-danger">Invalid username</div>
+
+    }
+
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     <div>&nbsp;</div>
@@ -44,16 +51,7 @@
     </div>
 </form>
 
-
-@section Scripts{
-    <script src="~/js/tracker.js"></script>
+ 
+@section Scripts{ 
+    <script src="~/js/homepage.js"></script>
 }
-
-<script>
-    $(document).ready(function () {
-        isChecked = false;
-        console.log("resetting isChecked");
-        console.log(isChecked)
-    });
-
-</script>

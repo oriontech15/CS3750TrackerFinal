@@ -23,7 +23,8 @@ namespace CS3750FinalTimeTracker.Pages
 
         public void OnGet()
         {
-
+            HttpContext.Session.Set("observerValue", BitConverter.GetBytes(false));
+            
         }
 
         
@@ -46,6 +47,7 @@ namespace CS3750FinalTimeTracker.Pages
             if (salt == null || hash == null)
             {
                 //username does not exist then the browser needs to indicate the use account was not found
+                HttpContext.Session.SetString("invalid", "invalid");
                 return RedirectToPage("./Index");
             }
 
@@ -53,13 +55,10 @@ namespace CS3750FinalTimeTracker.Pages
             UserObj.hash = hash;
             UserObj.GroupId = group;
 
-
-
             HttpContext.Session.SetString("salt", UserObj.salt);
             HttpContext.Session.SetString("hash", UserObj.hash);
             HttpContext.Session.SetInt32("groupId", UserObj.GroupId);
 
-         
             return RedirectToPage("./existPassword");
         }
     }

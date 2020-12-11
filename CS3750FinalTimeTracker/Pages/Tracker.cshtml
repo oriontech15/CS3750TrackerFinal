@@ -145,6 +145,10 @@
         </div>
     </div>
 
+    <div id="usersList" style="display:none;">@(Model.jsonUsers )</div>
+    <div id="totalTimeList" style="display:none;">@(Model.jsonTotalTime )</div>
+
+
     <!-- Modal -->
     <div method="post" class="modal fade" id="recordTimeModal" tabindex="-1" role="dialog" aria-labelledby="recordTimeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -179,6 +183,9 @@
                         </div>
                     </form>
                 </div>
+
+
+
             </div>
         </div>
     </div>
@@ -188,45 +195,20 @@
 @section Scripts{
     <script src="~/js/user.js"></script>
     <script src="~/js/tracker.js"></script>
+    <script src="~/lib/node_modules/chart.js/dist/Chart.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 }
 
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }
-    });
+    
 
-    $(document).ready(function () {
-        document.getElementById("trackerDiv").disabled = false;
-        document.getElementById("trackerStartStopBtn").disabled = false;
-    });
+    //$(document).ready(function () {
+    //    document.getElementById("trackerDiv").disabled = false;
+    //    document.getElementById("trackerStartStopBtn").disabled = false;
+       
+    //});
 
 </script>
 

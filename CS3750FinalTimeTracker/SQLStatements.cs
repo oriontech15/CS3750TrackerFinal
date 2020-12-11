@@ -43,7 +43,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select SUM(totalTime) from [dbo].[User] group by '" + userName + "' where userName = '" + userName + "'";
+            string sSQL = "select SUM(totalTime) from [dbo].[User] where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -58,7 +58,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(userName) from [dbo].[User] where group = '" + group + "'";
+            string sSQL = "select distinct(userName) from [dbo].[User] where groupId = '" + group + "'";
             return sSQL;
         }
         catch (Exception ex)
