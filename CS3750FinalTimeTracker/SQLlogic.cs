@@ -66,7 +66,7 @@ public static class SQLlogic
         }
     }
 
-    public static List<string> GetUsersOfGroup(String group)
+    public static List<string> GetUsersOfGroup(int group)
     {
         try
         {

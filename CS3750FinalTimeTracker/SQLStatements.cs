@@ -28,7 +28,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(group) from dbo.User";
+            string sSQL = "select distinct(group) from [dbo].[User]";
             return sSQL;
         }
         catch (Exception ex)
@@ -43,7 +43,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select SUM(totalTime) from dbo.User group by '" + userName + "' where userName = '" + userName + "'";
+            string sSQL = "select SUM(totalTime) from [dbo].[User] group by '" + userName + "' where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -54,11 +54,11 @@ public class SQLStatements
     }
 
     //returns list of users from a group logic check
-    public static string GetUsersOfGroup(String group)
+    public static string GetUsersOfGroup(int group)
     {
         try
         {
-            string sSQL = "select distinct(userName) from dbo.User where group = '" + group + "'";
+            string sSQL = "select distinct(userName) from [dbo].[User] where group = '" + group + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -73,7 +73,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select userName, startTime, endTime, totalTime, description from dbo.User where group = '" + group + "'";
+            string sSQL = "select userName, startTime, endTime, totalTime, description from [dbo].[User] where group = '" + group + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -88,7 +88,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(hash) from dbo.User where userName = '" + userName + "'";
+            string sSQL = "select distinct(hash) from [dbo].[User] where userName = '" + userName + "' AND hash IS NOT NULL";
             return sSQL;
         }
         catch (Exception ex)
@@ -103,7 +103,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(salt) from dbo.User where userName = '" + userName + "'";
+            string sSQL = "select distinct(salt) from [dbo].[User] where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)
@@ -118,7 +118,7 @@ public class SQLStatements
     {
         try
         {
-            string sSQL = "select distinct(groupId) from dbo.User where userName = '" + userName + "'";
+            string sSQL = "select distinct(groupId) from [dbo].[User] where userName = '" + userName + "'";
             return sSQL;
         }
         catch (Exception ex)

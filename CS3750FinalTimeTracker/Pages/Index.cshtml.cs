@@ -26,14 +26,24 @@ namespace CS3750FinalTimeTracker.Pages
 
         }
 
+        
+
         public IActionResult OnPost()
         {
-            var salt = SQLlogic.getSalt(UserObj.userName);
-            var hash = SQLlogic.getHash(UserObj.userName);
-            var group = SQLlogic.getGroup(UserObj.userName);
+            HttpContext.Session.SetString("username", UserObj.userName);
+            var userName = HttpContext.Session.GetString("username");
 
 
-            if(salt == null || hash == null)
+            //var hashObject = _unitOfWork.User.GetFirstOrDefault(u => u.hash == UserObj.hash).hash;
+            //var saltObject = _unitOfWork.User.GetFirstOrDefault(u => u.salt == UserObj.salt).salt;
+            //var groupObject = _unitOfWork.User.GetFirstOrDefault(u => u.salt == UserObj.salt).GroupId;
+
+
+            var salt = SQLlogic.getSalt(userName);
+            var hash = SQLlogic.getHash(userName);
+            var group = SQLlogic.getGroup(userName);
+
+            if (salt == null || hash == null)
             {
                 //username does not exist then the browser needs to indicate the use account was not found
                 return RedirectToPage("./Index");
@@ -42,9 +52,9 @@ namespace CS3750FinalTimeTracker.Pages
             UserObj.salt = salt;
             UserObj.hash = hash;
             UserObj.GroupId = group;
-           
 
-            HttpContext.Session.SetString("username", UserObj.userName);
+
+
             HttpContext.Session.SetString("salt", UserObj.salt);
             HttpContext.Session.SetString("hash", UserObj.hash);
             HttpContext.Session.SetInt32("groupId", UserObj.GroupId);

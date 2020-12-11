@@ -30,6 +30,15 @@ namespace CS3750FinalTimeTracker.Pages
         public void OnGet()
         {
             UserList = _unitOfWork.User.GetAll(null, null, "Group");
+
+            List<string> UsersList = SQLlogic.GetUsersOfGroup((int)HttpContext.Session.GetInt32("groupId"));
+            List<int> TotalTimeList = new List<int>();
+
+            foreach (var un in UsersList)
+            {
+                TotalTimeList.Add(SQLlogic.getTotalTime(un));
+                
+            }
         }
 
         public IActionResult OnPost()
@@ -41,7 +50,7 @@ namespace CS3750FinalTimeTracker.Pages
             UserObj.salt = HttpContext.Session.GetString("salt");
             UserObj.hash = HttpContext.Session.GetString("hash");
             UserObj.GroupId = (int)HttpContext.Session.GetInt32("groupId");
-           
+
 
             _unitOfWork.User.Add(UserObj);
             _unitOfWork.Save();

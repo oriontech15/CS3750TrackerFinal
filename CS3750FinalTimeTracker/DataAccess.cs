@@ -12,6 +12,7 @@ public class DataAccess
     /// <summary>
     /// Connection string to the database.
     /// </summary>
+
     private static string sConnectionString = "Server=(localdb)\\mssqllocaldb;Database=ApplicationDbContext-26280240-0c4e-4ae5-a9ae-27269b9df960;Trusted_Connection=True;MultipleActiveResultSets=true";
 
     /// <summary>
